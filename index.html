@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Calendar</title>
+    <script>
+        function addToCalendar() {
+            let icsUrl = "https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_REPO/main/calendar.ics";
+
+            if (navigator.userAgent.includes("Mac") || navigator.userAgent.includes("iPhone")) {
+                window.location.href = "webcal://" + icsUrl.replace("https://", "");
+            } else if (navigator.userAgent.includes("Windows")) {
+                window.open("https://outlook.live.com/owa/?path=/calendar/action/compose&rru=addsubscription&name=Events&url=" + encodeURIComponent(icsUrl), "_blank");
+            } else {
+                window.open("https://calendar.google.com/calendar/r?cid=" + encodeURIComponent(icsUrl), "_blank");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Subscribe to Our Calendar</h2>
+    <button onclick="addToCalendar()">Add to Calendar</button>
+</body>
+</html>
